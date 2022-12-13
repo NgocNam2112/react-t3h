@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import "./EntryModal.css";
 
 export default class EntryModal extends Component {
+  
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <div className="modal" onClick={this.props.handleHideModal}>

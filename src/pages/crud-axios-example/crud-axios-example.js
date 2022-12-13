@@ -39,6 +39,7 @@ export default class CrudAxiosExample extends Component {
       ],
       isShowModal: false,
       avatar: "",
+      isCreateNew: true,
     };
   }
 
@@ -76,16 +77,33 @@ export default class CrudAxiosExample extends Component {
   };
 
   handleSubmitEntry = () => {
+    if (this.state.isCreateNew) {
+      this.setState((prevState) => ({
+        ...prevState,
+        listEntries: [
+          ...prevState.listEntries,
+          {
+            id: 10,
+            avatar: prevState.avatar,
+          },
+        ],
+        avatar: "",
+      }));
+    } else {
+      this.setState((prevState) => ({
+        ...prevState,
+        listEntries: [
+          
+        ]
+      }))
+    }
+  };
+
+  handleClickEntryItem = (item) => {
     this.setState((prevState) => ({
       ...prevState,
-      listEntries: [
-        ...prevState.listEntries,
-        {
-          id: 10,
-          avatar: prevState.avatar,
-        },
-      ],
-      avatar: "",
+      avatar: item.avatar,
+      isCreateNew: false,
     }));
   };
 
@@ -100,6 +118,8 @@ export default class CrudAxiosExample extends Component {
                 key={item.id}
                 avatar={item.avatar}
                 handleClick={() => this.handleClick(item)}
+                handleShowModal={this.handleShowModal}
+                handleClickEntryItem={() => this.handleClickEntryItem(item)}
               />
             );
           })}

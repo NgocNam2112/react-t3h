@@ -7,9 +7,18 @@ export default class EntryItem extends React.Component {
   }
   render() {
     return (
-      <div className="card">
+      <div
+        className="card"
+        onClick={() => {
+          this.props.handleShowModal();
+          this.props.handleClickEntryItem();
+        }}
+      >
         <img
-          onClick={this.props.handleClick}
+          onClick={(event) => {
+            event.stopPropagation();
+            this.props.handleClick();
+          }}
           src="https://i.stack.imgur.com/k59em.png"
           alt=""
           className="dots"
