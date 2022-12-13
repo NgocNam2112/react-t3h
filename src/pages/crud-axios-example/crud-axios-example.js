@@ -40,6 +40,7 @@ export default class CrudAxiosExample extends Component {
       isShowModal: false,
       avatar: "",
       isCreateNew: true,
+      currentEntry: "",
     };
   }
 
@@ -93,9 +94,43 @@ export default class CrudAxiosExample extends Component {
       this.setState((prevState) => ({
         ...prevState,
         listEntries: [
-          
-        ]
-      }))
+          ...prevState.listEntries.map((it) => {
+            if (it.id === prevState.currentEntry.id) {
+              return { ...it, avatar: prevState.avatar };
+            }
+            return it;
+          }),
+        ],
+      }));
+
+      // const indexOfListEntry = this.state.listEntries.findIndex(
+      //   (it) => it.id === this.state.currentEntry.id
+      // );
+
+      // console.log("indexOfListEntry", indexOfListEntry);
+
+      // console.log(
+      //   "last entries",
+      //   this.state.listEntries.slice(
+      //     indexOfListEntry + 1,
+      //     this.state.listEntries.length - 1
+      //   )
+      // );
+
+      // this.setState((prevState) => ({
+      //   ...prevState,
+      //   listEntries: [
+      //     ...prevState.listEntries.slice(0, indexOfListEntry),
+      //     {
+      //       ...prevState.currentEntry,
+      //       avatar: prevState.avatar,
+      //     },
+      //     ...prevState.listEntries.slice(
+      //       indexOfListEntry,
+      //       prevState.listEntries.length - 1
+      //     ),
+      //   ],
+      // }));
     }
   };
 
@@ -104,6 +139,7 @@ export default class CrudAxiosExample extends Component {
       ...prevState,
       avatar: item.avatar,
       isCreateNew: false,
+      currentEntry: { ...item },
     }));
   };
 
