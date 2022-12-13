@@ -11,12 +11,13 @@ export default class Form extends Component {
     this.inputRef = React.createRef(null);
   }
 
-  // handleChange = (event) => {
-  //   const { value } = event.target;
-  //   this.setState((prevState) => ({
-  //     ...prevState,
-  //     username: value,
-  //   }));
+  handleChange = (event) => {
+    const { value } = event.target;
+    this.setState((prevState) => ({
+      ...prevState,
+      username: value,
+    }));
+  };
 
   //   if (value === "") {
   //     this.setState((prevState) => {
