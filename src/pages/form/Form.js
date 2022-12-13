@@ -17,22 +17,21 @@ export default class Form extends Component {
       ...prevState,
       username: value,
     }));
-  };
 
-  //   if (value === "") {
-  //     this.setState((prevState) => {
-  //       return {
-  //         ...prevState,
-  //         validateUserName: "Username cannot empty",
-  //       };
-  //     });
-  //   } else {
-  //     this.setState((prevState) => ({
-  //       ...prevState,
-  //       validateUserName: "",
-  //     }));
-  //   }
-  // };
+    if (value === "") {
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          validateUserName: "Username cannot empty",
+        };
+      });
+    } else {
+      this.setState((prevState) => ({
+        ...prevState,
+        validateUserName: "",
+      }));
+    }
+  };
 
   // componentDidMount() {
   //   this.setState((prevState) => ({
