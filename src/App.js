@@ -1,8 +1,11 @@
 import React from "react";
 import "./App.css";
+import EffectHook from "./components/EffectHook/EffectHook";
 import CrudAxiosExample from "./pages/crud-axios-example/crud-axios-example";
 import Form from "./pages/form/Form";
+import Hook from "./pages/hooks/Hook";
 import TodoApp from "./pages/todo-app/TodoApp";
+import TodoHook from "./pages/todo-hook/TodoHook";
 
 class App extends React.Component {
   constructor(props) {
@@ -13,9 +16,12 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <CrudAxiosExample />
+        {/* <CrudAxiosExample /> */}
         {/* <Form /> */}
         {/* <TodoApp /> */}
+        {/* <Hook /> */}
+        {/* <TodoHook /> */}
+        <EffectHook />
       </>
     );
   }

@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import "./TodoApp.css";
 
 export default class TodoApp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listTodo: [
+        { id: 1, content: "Ăn sáng", isActive: false, isComplete: false },
+        { id: 2, content: "Ăn trưa", isActive: false, isComplete: false },
+        { id: 3, content: "Ăn tối", isActive: false, isComplete: false },
+      ],
+    };
+  }
+
   render() {
     return (
       <section className="todoapp">
