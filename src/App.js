@@ -20,8 +20,8 @@ class App extends React.Component {
         {/* <Form /> */}
         {/* <TodoApp /> */}
         {/* <Hook /> */}
-        {/* <TodoHook /> */}
-        <EffectHook />
+        <TodoHook />
+        {/* <EffectHook /> */}
       </>
     );
   }
