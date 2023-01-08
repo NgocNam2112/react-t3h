@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const ListTodoHook = (props) => {
+  const listTodo = useSelector((state) => state.todo);
   return (
     <section className="main" data-reactid=".0.1">
       <input
@@ -8,11 +10,10 @@ const ListTodoHook = (props) => {
         className="toggle-all"
         type="checkbox"
         data-reactid=".0.1.0"
-        
       />
       <label htmlFor="toggle-all" data-reactid=".0.1.1" />
       <ul className="todo-list" data-reactid=".0.1.2">
-        {props.listTodo.map((item, index) => {
+        {listTodo.map((item, index) => {
           return (
             <li
               className=""

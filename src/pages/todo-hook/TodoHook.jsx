@@ -1,46 +1,60 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import ListTodoHook from "../../components/ListTodoHook/ListTodoHook";
 import TodoHookFilter from "../../components/TodoHookFilter/TodoHookFilter";
 import "../todo-app/TodoApp.css";
+import { createTodo } from "../../store/actions/todoActions";
 
 const TodoHook = () => {
-  const [listTodo, setListTodo] = useState([]);
+  const dispatch = useDispatch();
   const [todoInput, setTodoInput] = useState("");
 
-  const fetchTodoList = async () => {
-    const { data } = await axios.get(
-      "https://63a44da3821953d4f2b051c3.mockapi.io/list"
-    );
-    setListTodo(data);
-  };
+  // const fetchTodoList = async () => {
+  //   const { data } = await axios.get(
+  //     "https://63a44da3821953d4f2b051c3.mockapi.io/list"
+  //   );
+  //   setListTodo(data);
+  // };
 
   const handleChangeInput = (e) => {
     setTodoInput(e.target.value);
   };
 
-  const createTodo = async (e) => {
+  // const createTodo = async (e) => {
+  //   if (e.key === "Enter") {
+  //     const data = await axios.post(
+  //       "https://63a44da3821953d4f2b051c3.mockapi.io/list",
+  //       {
+  //         content: todoInput,
+  //         isActive: true,
+  //         isComplete: false,
+  //       }
+  //     );
+
+  //     if (data.status === 201) {
+  //       fetchTodoList();
+  //     }
+
+  //     // setListTodo([...listTodo, { ...data }]);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchTodoList();
+  // }, []);
+
+  const handleCreateTodo = (e) => {
+    const todo = {
+      content: todoInput,
+      isActive: true,
+      isComplete: false,
+    };
     if (e.key === "Enter") {
-      const data = await axios.post(
-        "https://63a44da3821953d4f2b051c3.mockapi.io/list",
-        {
-          content: todoInput,
-          isActive: true,
-          isComplete: false,
-        }
-      );
-
-      if (data.status === 201) {
-        fetchTodoList();
-      }
-
-      // setListTodo([...listTodo, { ...data }]);
+      console.log("123");
+      dispatch(createTodo(todo));
     }
   };
-
-  useEffect(() => {
-    fetchTodoList();
-  }, []);
 
   return (
     <section className="todoapp">
@@ -54,10 +68,10 @@ const TodoHook = () => {
             data-reactid=".0.0.1"
             value={todoInput}
             onChange={handleChangeInput}
-            onKeyDown={(e) => createTodo(e)}
+            onKeyDown={(e) => handleCreateTodo(e)}
           />
         </header>
-        <ListTodoHook listTodo={listTodo} />
+        <ListTodoHook />
         <TodoHookFilter />
       </div>
     </section>
