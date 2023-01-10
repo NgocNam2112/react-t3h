@@ -1,8 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTodo } from "../../store/todoApp/todoAppSlice";
 
 const ListTodoHook = (props) => {
+  const dispatch = useDispatch();
   const listTodo = useSelector((state) => state.todoApp);
+
+  const handleDeleteTodo = (id) => {
+    dispatch(deleteTodo(id));
+  };
   return (
     <section className="main" data-reactid=".0.1">
       <input
@@ -36,6 +42,7 @@ const ListTodoHook = (props) => {
                   </label>
                   <button
                     className="destroy"
+                    onClick={() => handleDeleteTodo(item.id)}
                     data-reactid=".0.1.2.$bb632cfd-6960-41f0-a68e-5387c4a20654.0.2"
                   />
                 </div>

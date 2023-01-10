@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchListTodo } from "./todoAppActions";
 
 const initialState = [
   {
@@ -35,8 +36,18 @@ export const todoAppSlice = createSlice({
     addTodo: (state, action) => {
       state.push({ id: state.length + 1, ...action.payload });
     },
+
+    deleteTodo: (state, action) => {
+      return state.filter((item) => item.id !== action.payload);
+    },
+  },
+
+  extraReducers: (builder) => {
+    builder.addCase(fetchListTodo.fulfilled, (state, action) => {
+      return [...action.payload];
+    });
   },
 });
 
-export const { addTodo } = todoAppSlice.actions;
+export const { addTodo, deleteTodo } = todoAppSlice.actions;
 export const todoAppReducer = todoAppSlice.reducer;
