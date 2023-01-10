@@ -13,9 +13,9 @@ export const fetchListTodo = createAsyncThunk(
   }
 );
 
-export const deleteTodo = createAsyncThunk(
-  "todoAppSlice/deleteTodo",
-  async (url, id) => {
+export const deleteTodoAsync = createAsyncThunk(
+  "todoAppSlice/deleteTodoAsync",
+  async ({ url, id }) => {
     try {
       const { data } = await axios.delete(`${url}/${id}`);
       return data;

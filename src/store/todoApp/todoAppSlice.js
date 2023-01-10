@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchListTodo } from "./todoAppActions";
+import { deleteTodoAsync, fetchListTodo } from "./todoAppActions";
 
 const initialState = [
   {
@@ -45,6 +45,10 @@ export const todoAppSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchListTodo.fulfilled, (state, action) => {
       return [...action.payload];
+    });
+
+    builder.addCase(deleteTodoAsync.fulfilled, (state, action) => {
+      return state.filter((item) => item.id !== action.payload.id);
     });
   },
 });

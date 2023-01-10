@@ -1,13 +1,20 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteTodoAsync } from "../../store/todoApp/todoAppActions";
 import { deleteTodo } from "../../store/todoApp/todoAppSlice";
 
 const ListTodoHook = (props) => {
+  const BASE_URL = "https://63a44da3821953d4f2b051c3.mockapi.io/list";
   const dispatch = useDispatch();
   const listTodo = useSelector((state) => state.todoApp);
 
   const handleDeleteTodo = (id) => {
-    dispatch(deleteTodo(id));
+    dispatch(
+      deleteTodoAsync({
+        url: BASE_URL,
+        id,
+      })
+    );
   };
   return (
     <section className="main" data-reactid=".0.1">
