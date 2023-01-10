@@ -1,3 +1,5 @@
+import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = [
   {
     content: "An sang",
@@ -26,19 +28,15 @@ const initialState = [
   },
 ];
 
-export const todoReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "CREATE_TODO":
-      return [
-        ...state,
-        {
-          id: state.length + 1,
-          ...action.payload,
-        },
-      ];
-    default:
-      return state;
-  }
-};
+export const todoAppSlice = createSlice({
+  name: "todoAppSlice",
+  initialState,
+  reducers: {
+    addTodo: (state, action) => {
+      state.push({ id: state.length + 1, ...action.payload });
+    },
+  },
+});
 
-export default todoReducer;
+export const { addTodo } = todoAppSlice.actions;
+export const todoAppReducer = todoAppSlice.reducer;

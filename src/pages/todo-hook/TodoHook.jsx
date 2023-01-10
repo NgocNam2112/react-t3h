@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import ListTodoHook from "../../components/ListTodoHook/ListTodoHook";
 import TodoHookFilter from "../../components/TodoHookFilter/TodoHookFilter";
+import { addTodo } from "../../store/todoApp/todoAppSlice";
 import "../todo-app/TodoApp.css";
-import { createTodo } from "../../store/actions/todoActions";
 
 const TodoHook = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,17 @@ const TodoHook = () => {
 
   const handleChangeInput = (e) => {
     setTodoInput(e.target.value);
+  };
+
+  const handleCreateTodo = (e) => {
+    const todo = {
+      content: todoInput,
+      isActive: true,
+      isComplete: false,
+    };
+    if (e.key === "Enter") {
+      dispatch(addTodo(todo));
+    }
   };
 
   // const createTodo = async (e) => {
@@ -44,17 +55,16 @@ const TodoHook = () => {
   //   fetchTodoList();
   // }, []);
 
-  const handleCreateTodo = (e) => {
-    const todo = {
-      content: todoInput,
-      isActive: true,
-      isComplete: false,
-    };
-    if (e.key === "Enter") {
-      console.log("123");
-      dispatch(createTodo(todo));
-    }
-  };
+  // const handleCreateTodo = (e) => {
+  //   const todo = {
+  //     content: todoInput,
+  //     isActive: true,
+  //     isComplete: false,
+  //   };
+  //   if (e.key === "Enter") {
+  //     dispatch(createTodo(todo));
+  //   }
+  // };
 
   return (
     <section className="todoapp">
@@ -64,7 +74,6 @@ const TodoHook = () => {
           <input
             className="new-todo"
             placeholder="What needs to be done?"
-            defaultValue=""
             data-reactid=".0.0.1"
             value={todoInput}
             onChange={handleChangeInput}
